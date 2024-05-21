@@ -1,0 +1,56 @@
+#pragma once
+#include "LinkedListDeclaration.h"
+template<typename Type>
+struct Pair1{
+	Type data_;
+	int is_exist_{0};
+	
+};
+template <typename Type>
+class BalancedBinaryTree{
+	private:
+	struct Node{
+		Node(Type t1);
+		Node();
+		Type data_;
+		signed char height_;
+		Node* leftptr_;
+		Node* rightptr_;
+	};
+	Node* head{nullptr};
+
+	public:
+	/*template<typename Type1>
+	friend void   PrintBinaryTree(typename BalancedBinaryTree<Type1>::Node* node);*/
+	BalancedBinaryTree();
+	BalancedBinaryTree(Type data);
+	BalancedBinaryTree(BalancedBinaryTree<Type> const& base);
+	BalancedBinaryTree(BalancedBinaryTree<Type>::Node* node);
+	void insert(Type data);
+	void PrintBinaryTree();
+	void PrintBinaryTree(BalancedBinaryTree<Type>::Node* node);
+	void Remove(Type data);
+	Pair1<Type> RemoveFirst();
+	void Map(Type (*FooMap)(Type)); //there are mutable functions
+	void Where(bool (*FooWhere)(Type));
+	void Confluence(BalancedBinaryTree<Type> anothertree);
+	BalancedBinaryTree<Type> GetSubTree(Type key);
+	bool Compare( BalancedBinaryTree<Type> SecondTree); // if 1 than they are equal
+	Node* FindElement_(Node* node,Type key);
+	Pair1<BalancedBinaryTree<Type>::Node*>  FindSubTree(BalancedBinaryTree<Type>::Node* root);
+	Pair1<BalancedBinaryTree<Type>::Node*>  FindSubTree(BalancedBinaryTree<Type> obj);
+	private:
+	int IsInclude(Node* head, Node* node);
+	bool Compare_(Node* FirstNode, Node* SecondNode);
+	BalancedBinaryTree<Type> GetSubTree_(Node* node,Type key);
+	Node* Remove_(Node* node, Type data);
+	signed char GetHeight(Node* node);
+	void FixHeight(Node* node);
+	Node* Insert_(Node* node, Type data);
+	Node* Balance(Node* node);
+	Node* RightRotate(Node* node);
+	Node* LeftRotate(Node* node);
+	int BalanceFactor(Node* node);
+	Node* FindMin(Node* node);
+	Node* RemoveMin(Node* node);
+};
