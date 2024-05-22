@@ -232,10 +232,10 @@ Pair1< typename BalancedBinaryTree<Type>::Node*> BalancedBinaryTree<Type>::FindS
     {
         if(head == 0&& root == 0)
 		{
-			Pair1<BalancedBinaryTree<Type>::Node*> para;
+			/*Pair1<BalancedBinaryTree<Type>::Node*> para;
 					 para.data_ = root;
-					 para.is_exist_ = 1;
-					 return para;
+					 para.is_exist_ = 1;*/
+					 return nullptr;
 		}
 			
 		LinkedList<BalancedBinaryTree<Type>::Node*> Queue;
@@ -246,10 +246,11 @@ Pair1< typename BalancedBinaryTree<Type>::Node*> BalancedBinaryTree<Type>::FindS
 			{
 				if(IsInclude(Queue.front(),root))
 				{
-					 Pair1<BalancedBinaryTree<Type>::Node*> para;
+					/* Pair1<BalancedBinaryTree<Type>::Node*> para;
 					 para.data_ = Queue.front();
 					 para.is_exist_ = 1;
-					 return para;
+					 return para;*/
+					 return Queue.front();
 				}
 					
 			}
