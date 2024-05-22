@@ -274,25 +274,67 @@ Pair1< typename BalancedBinaryTree<Type>::Node*>  BalancedBinaryTree<Type>::Find
         return FindSubTree(obj.head);
     }
 template <typename Type>
-void BalancedBinaryTree<Type>::testoutput()
+void BalancedBinaryTree<Type>::SideOutlet()
     {
-		testoutput_(head,0,false);
+		SideOutlet_(head,0,false);
     }
 template <typename Type>
-void BalancedBinaryTree<Type>::testoutput_(Node *node, int space, bool isleft)
+void BalancedBinaryTree<Type>::KLP()
+    {
+		KLP_(head);
+    }
+template <typename Type>
+void BalancedBinaryTree<Type>::KPL()
+	{
+		KPL_(head);
+	}
+template <typename Type>
+void BalancedBinaryTree<Type>::LPK()
+    {
+		LPK(head);
+    }
+template <typename Type>
+void BalancedBinaryTree<Type>::LPK_(Node *node)
+    {
+		if(node == 0)
+			return;
+		LPK_(node->leftptr_);
+		LPK_(node->rightptr_);
+		std::cout << node->data_ << "  ";
+    }
+    template <typename Type>
+    void BalancedBinaryTree<Type>::KPL_(Node *node)
+    {
+		if(node == 0)
+			return;
+		std::cout << node->data_ << "  ";
+		KPL_(node->rightptr_);
+		KPL_(node->leftptr_);
+    }
+template <typename Type>
+void BalancedBinaryTree<Type>::KLP_(Node *node)
+    {
+		if(node == 0)
+			return;
+		std::cout << node->data_ << "  ";
+		KLP_(node->leftptr_);
+		KLP_(node->rightptr_);
+    }
+    template <typename Type>
+    void BalancedBinaryTree<Type>::SideOutlet_(Node *node, int space, bool isleft)
     {
 		if(node == 0) return;
 		int BaseSpase = 5;
 		space += BaseSpase;
-		testoutput_(node->rightptr_,space,false);
+		SideOutlet_(node->rightptr_,space,false);
 		for(int i = BaseSpase; i < space; i ++)
 			std::cout << " ";
 		if(isleft)
-			std::cout << "___";
+			std::cout << "\\___";
 		else
-			std::cout << "---";
+			std::cout << "/---";
 		std::cout << node->data_ << std::endl;
-		testoutput_(node->leftptr_,space,true);
+		SideOutlet_(node->leftptr_,space,true);
     }
     template <typename Type>
     int BalancedBinaryTree<Type>::IsInclude(Node *head, Node *node)

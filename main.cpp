@@ -12,10 +12,10 @@ int main()
 	{	exampletree.insert(i);
 		
 	}
-	/*BalancedBinaryTree<int> another(-333);
-	for(int i = 0;i < 10; i++)
-		another.insert(-i);
-	exampletree.PrintBinaryTree();
+	
+	//BalancedBinaryTree<int> another(-333);
+	
+	/*exampletree.PrintBinaryTree();
 	another.PrintBinaryTree();
 	exampletree.Confluence(another);
 	exampletree.PrintBinaryTree();
@@ -25,11 +25,9 @@ int main()
 	//exampletree.foo();
 	exampletree.insert(5);
 	exampletree.PrintBinaryTree();
-	BalancedBinaryTree<int> other;
-	other.insert(6);
-	other.insert(5);
-	other.insert(8);
-	other.testoutput();
+	exampletree.SideOutlet();
+	exampletree.KLP();
+	
 	// ooooooo
 
 	

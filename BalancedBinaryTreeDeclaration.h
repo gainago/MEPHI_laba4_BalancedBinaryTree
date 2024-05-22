@@ -39,9 +39,15 @@ class BalancedBinaryTree{
 	Node* FindElement_(Node* node,Type key);
 	Pair1<BalancedBinaryTree<Type>::Node*>  FindSubTree(BalancedBinaryTree<Type>::Node* root);
 	Pair1<BalancedBinaryTree<Type>::Node*>  FindSubTree(BalancedBinaryTree<Type> obj);
-	void testoutput();
+	void SideOutlet();
+	void KLP();
+	void KPL();
+	void LPK();
 	private:
-	void testoutput_(Node* node,int space,bool isleft);
+	void LPK_(Node* node);
+	void KPL_(Node* node);
+	void KLP_(Node* node);
+	void SideOutlet_(Node* node,int space,bool isleft);
 	int IsInclude(Node* head, Node* node);
 	bool Compare_(Node* FirstNode, Node* SecondNode);
 	BalancedBinaryTree<Type> GetSubTree_(Node* node,Type key);
