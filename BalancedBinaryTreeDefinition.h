@@ -273,6 +273,27 @@ Pair1< typename BalancedBinaryTree<Type>::Node*>  BalancedBinaryTree<Type>::Find
     {
         return FindSubTree(obj.head);
     }
+template <typename Type>
+void BalancedBinaryTree<Type>::testoutput()
+    {
+		testoutput_(head,0,false);
+    }
+template <typename Type>
+void BalancedBinaryTree<Type>::testoutput_(Node *node, int space, bool isleft)
+    {
+		if(node == 0) return;
+		int BaseSpase = 5;
+		space += BaseSpase;
+		testoutput_(node->rightptr_,space,false);
+		for(int i = BaseSpase; i < space; i ++)
+			std::cout << " ";
+		if(isleft)
+			std::cout << "___";
+		else
+			std::cout << "---";
+		std::cout << node->data_ << std::endl;
+		testoutput_(node->leftptr_,space,true);
+    }
     template <typename Type>
     int BalancedBinaryTree<Type>::IsInclude(Node *head, Node *node)
     {

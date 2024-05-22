@@ -28,8 +28,8 @@ int main()
 	BalancedBinaryTree<int> other;
 	other.insert(6);
 	other.insert(5);
-	//other.insert(8);
-	exampletree.PrintBinaryTree( (exampletree.FindSubTree(other)).data_);
+	other.insert(8);
+	other.testoutput();
 	// ooooooo
 
 	
