@@ -48,9 +48,9 @@ class BalancedBinaryTree{
 	void PKL();
 	LinkedList<Type> Represent(int number_ob);
 	~BalancedBinaryTree();
-	BalancedBinaryTree<Type> MakeTree
+	static BalancedBinaryTree<Type> MakeTreeForRound(LinkedList<Type> const & listNLR,LinkedList<Type> const & listLNR);
 	private:
-	Node* MakeKLPTree(LinkedList<Type> const & LL,int left,int right);
+	static Node* MakeTreeForRound_(LinkedList<Type> const & listNLR, int NLRleft, int NLRright, LinkedList<Type> const & listLNR,int LNRleft,int LNRright);
 	void Represent_(LinkedList<Type> &list, Node* node,int number_ob);
 	void PKL(Node* node);
 	void PLK_(Node* node);

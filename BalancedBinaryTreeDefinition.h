@@ -332,19 +332,35 @@
 			head = Remove_(head,head->data_);
 		}
     }
-    template <typename Type>
-    typename BalancedBinaryTree<Type>::Node *BalancedBinaryTree<Type>::MakeKLPTree(LinkedList<Type> const &list, int left, int right)
-    {
-		if(left > right)
-			return nullptr;
-		Node* node = new Node(list.GetIndex(left));
-		node->leftptr_ = MakeKLPTree(list,left + 1, (left + right)/2);
-		node->rightptr_ = MakeKLPTree(list, (left + right)/2 + 1,right);
-		return node;
 
-    }
     template <typename Type>
-    inline void BalancedBinaryTree<Type>::Represent_(LinkedList<Type> &list, Node *node,int number_ob)
+    BalancedBinaryTree<Type> BalancedBinaryTree<Type>::MakeTreeForRound(LinkedList<Type> const & listNLR,LinkedList<Type> const & listLNR)
+    {
+        BalancedBinaryTree<Type> tree;
+		tree.head =  MakeTreeForRound_(listNLR,0,listNLR.GetLength() - 1,listLNR,0,listLNR.GetLength() - 1);
+		return tree;
+    }
+
+    template <typename Type>
+    typename BalancedBinaryTree<Type>::Node* BalancedBinaryTree<Type>::MakeTreeForRound_(LinkedList<Type> const &listNLR,int NLRleft, int NLRright, LinkedList<Type> const &listLNR, int LNRleft, int LNRright)
+    {
+		if(NLRleft > NLRright)
+			return nullptr;
+		if(LNRleft > LNRright)
+			return nullptr;
+		Node* node = new Node(listNLR.GetIndex(NLRleft));
+		int ind = 0;
+		for(int i = LNRleft; i <= LNRright; i++)
+			if(listLNR.GetIndex(i) == listNLR.GetIndex(NLRleft))
+				ind = i;
+		node->leftptr_ = MakeTreeForRound_(listNLR,NLRleft + 1,NLRleft + ind - LNRleft,listLNR,LNRleft, ind - 1);
+		//node->rightptr_ = MakeTreeForRound_(listNLR,NLRleft + ind + 1 ,NLRright, listLNR,LNRleft + ind + 1 ,LNRright);
+		node->rightptr_ = MakeTreeForRound_(listNLR,NLRleft + ind - LNRleft + 1,NLRright, listLNR, ind + 1 ,LNRright);
+		return node;
+    }
+
+    template <typename Type>
+    inline void BalancedBinaryTree<Type>::Represent_(LinkedList<Type> &list, Node *node, int number_ob)
     {
 		if(node == 0)
 			return;
