@@ -26,6 +26,7 @@ class BalancedBinaryTree{
 	BalancedBinaryTree(Type data);
 	BalancedBinaryTree(BalancedBinaryTree<Type> const& base);
 	BalancedBinaryTree(BalancedBinaryTree<Type>::Node* node);
+	BalancedBinaryTree(LinkedList<Type> list);
 	void insert(Type data);
 	void PrintBinaryTree();
 	void PrintBinaryTree(BalancedBinaryTree<Type>::Node* node);
@@ -43,13 +44,22 @@ class BalancedBinaryTree{
 	void KLP();
 	void KPL();
 	void LPK();
+	void PLK();
+	void PKL();
+	LinkedList<Type> Represent(int number_ob);
+	~BalancedBinaryTree();
+	BalancedBinaryTree<Type> MakeTree
 	private:
+	Node* MakeKLPTree(LinkedList<Type> const & LL,int left,int right);
+	void Represent_(LinkedList<Type> &list, Node* node,int number_ob);
+	void PKL(Node* node);
+	void PLK_(Node* node);
 	void LPK_(Node* node);
 	void KPL_(Node* node);
 	void KLP_(Node* node);
 	void SideOutlet_(Node* node,int space,bool isleft);
 	int IsInclude(Node* head, Node* node);
-	bool Compare_(Node* FirstNode, Node* SecondNode);
+	bool Compare_(Node* FirstNode, Node* SecondNode);//
 	BalancedBinaryTree<Type> GetSubTree_(Node* node,Type key);
 	Node* Remove_(Node* node, Type data);
 	signed char GetHeight(Node* node);

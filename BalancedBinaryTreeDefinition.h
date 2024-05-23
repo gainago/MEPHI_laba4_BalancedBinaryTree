@@ -2,19 +2,19 @@
 #include "BalancedBinaryTreeDeclaration.h"
 #include "LinkedListDeclaration.h"
 #include "LinkedListDefinition.h"
-template<typename Type>
-BalancedBinaryTree<Type> :: Node :: Node(Type t1) : data_(t1), height_(1), leftptr_(nullptr), rightptr_(nullptr) {}
-template<typename Type>
-BalancedBinaryTree<Type> :: Node :: Node() : data_(Type()), height_(1), leftptr_(nullptr), rightptr_(nullptr) {}
-template<typename Type>
-BalancedBinaryTree<Type> :: BalancedBinaryTree() : head(nullptr) {}
-template<typename Type>
-BalancedBinaryTree<Type> ::BalancedBinaryTree(Type data)
+	template<typename Type>
+	BalancedBinaryTree<Type> :: Node :: Node(Type t1) : data_(t1), height_(1), leftptr_(nullptr), rightptr_(nullptr) {}
+	template<typename Type>
+	BalancedBinaryTree<Type> :: Node :: Node() : data_(Type()), height_(1), leftptr_(nullptr), rightptr_(nullptr) {}
+	template<typename Type>
+	BalancedBinaryTree<Type> :: BalancedBinaryTree() : head(nullptr) {}
+	template<typename Type>
+	BalancedBinaryTree<Type> ::BalancedBinaryTree(Type data)
 	{
 		head = new Node(data);
 	}
-template <typename Type>
-BalancedBinaryTree<Type>::BalancedBinaryTree(BalancedBinaryTree<Type> const &base) : BalancedBinaryTree(base.head)
+	template <typename Type>
+	BalancedBinaryTree<Type>::BalancedBinaryTree(BalancedBinaryTree<Type> const &base) : BalancedBinaryTree(base.head)
 	{
     }
     template <typename Type>
@@ -45,13 +45,22 @@ BalancedBinaryTree<Type>::BalancedBinaryTree(BalancedBinaryTree<Type> const &bas
 			QueueType.pop();
 		}
 	}
-template <typename Type>
-void BalancedBinaryTree<Type>::insert(Type data)
-	{
+    template <typename Type>
+    inline BalancedBinaryTree<Type>::BalancedBinaryTree(LinkedList<Type> list)
+    {
+		head = Insert_(head,list.front());
+		if(list.GetLength() == 1)
+			return;
+		head->leftptr_ = MakeKLPTree(list,1,(list.GetLength() - 1)/2);
+		head->rightptr_ = MakeKLPTree(list,(list.GetLength() - 1)/2 + 1,list.GetLength() - 1);
+    }
+    template <typename Type>
+    void BalancedBinaryTree<Type>::insert(Type data)
+    {
 		head = Insert_(head , data);
 	}
-template<typename Type>
-void    BalancedBinaryTree<Type> :: PrintBinaryTree()
+	template<typename Type>
+	void    BalancedBinaryTree<Type> :: PrintBinaryTree()
 	{
 		if(head == 0)
 			return;
@@ -94,8 +103,8 @@ void    BalancedBinaryTree<Type> :: PrintBinaryTree()
 		}
 		std::cout << "\n---------------\n";
 	}
-template <typename Type>
-void BalancedBinaryTree<Type>::PrintBinaryTree(BalancedBinaryTree<Type>::Node *node)
+	template <typename Type>
+	void BalancedBinaryTree<Type>::PrintBinaryTree(BalancedBinaryTree<Type>::Node *node)
     {
 		if(node == 0)
 			return;
@@ -143,8 +152,8 @@ void BalancedBinaryTree<Type>::PrintBinaryTree(BalancedBinaryTree<Type>::Node *n
     {
 		head = Remove_(head,data);
 	}
-template <typename Type>
-inline Pair1<Type> BalancedBinaryTree<Type>::RemoveFirst()
+	template <typename Type>
+	Pair1<Type> BalancedBinaryTree<Type>::RemoveFirst()
     {
 		if(head == 0)
 		return Pair1<Type>{0,0};
@@ -152,8 +161,8 @@ inline Pair1<Type> BalancedBinaryTree<Type>::RemoveFirst()
         head = Remove_(head,head->data_);
 		return Pair1<Type>{current,1};
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::Map(Type (*FooMap)(Type))
+	template <typename Type>
+	void BalancedBinaryTree<Type>::Map(Type (*FooMap)(Type))
     {	
 		if(head == 0)
 		return;
@@ -170,8 +179,8 @@ void BalancedBinaryTree<Type>::Map(Type (*FooMap)(Type))
 		}
 
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::Where(bool (*FooWhere)(Type))
+	template <typename Type>
+	void BalancedBinaryTree<Type>::Where(bool (*FooWhere)(Type))
     {
 		LinkedList<Type> Q;
 		Pair1<Type> para = this->RemoveFirst();
@@ -187,8 +196,8 @@ void BalancedBinaryTree<Type>::Where(bool (*FooWhere)(Type))
 			Q.pop();
 		}
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::Confluence(BalancedBinaryTree<Type> anothertree)
+	template <typename Type>
+	void BalancedBinaryTree<Type>::Confluence(BalancedBinaryTree<Type> anothertree)
     {
 		LinkedList<Type> Q;
 		Pair1<Type> para = anothertree.RemoveFirst();
@@ -204,31 +213,31 @@ void BalancedBinaryTree<Type>::Confluence(BalancedBinaryTree<Type> anothertree)
 			Q.pop();
 		}
     }
-template <typename Type>
-BalancedBinaryTree<Type> BalancedBinaryTree<Type>::GetSubTree(Type key)
+	template <typename Type>
+	BalancedBinaryTree<Type> BalancedBinaryTree<Type>::GetSubTree(Type key)
     {
         return GetSubTree_(head,key);
     }
-template <typename Type>
-bool BalancedBinaryTree<Type>::Compare( BalancedBinaryTree<Type> SecondTree)
+	template <typename Type>
+	bool BalancedBinaryTree<Type>::Compare( BalancedBinaryTree<Type> SecondTree)
     {
         return Compare_(this->head,SecondTree.head);
     }
-template <typename Type>
-typename BalancedBinaryTree<Type>::Node* BalancedBinaryTree<Type>::FindElement_(Node *node, Type key)
+	template <typename Type>
+	typename BalancedBinaryTree<Type>::Node* BalancedBinaryTree<Type>::FindElement_(Node *node, Type key)
     {
         if(node == 0)
 			return 0;
 		if(node->data_ == key)
 			return node;
-		if(key <= node->data_)
+		if(node->data_ > key)
 			return FindElement_(node->leftptr_,key);
 		else{
 			return FindElement_(node->rightptr_,key);
 		}
     }
-template <typename Type>
-Pair1< typename BalancedBinaryTree<Type>::Node*> BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type>::Node* root)
+	template <typename Type>
+	Pair1< typename BalancedBinaryTree<Type>::Node*> BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type>::Node* root)
     {
         if(head == 0&& root == 0)
 		{
@@ -268,33 +277,145 @@ Pair1< typename BalancedBinaryTree<Type>::Node*> BalancedBinaryTree<Type>::FindS
 		
 		
     }
-template <typename Type>
-Pair1< typename BalancedBinaryTree<Type>::Node*>  BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type> obj)
+	template <typename Type>
+	Pair1< typename BalancedBinaryTree<Type>::Node*>  BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type> obj)
     {
         return FindSubTree(obj.head);
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::SideOutlet()
+	template <typename Type>
+	void BalancedBinaryTree<Type>::SideOutlet()
     {
 		SideOutlet_(head,0,false);
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::KLP()
+	template <typename Type>
+	void BalancedBinaryTree<Type>::KLP()
     {
 		KLP_(head);
+		std::cout << "\n";
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::KPL()
+	template <typename Type>
+	void BalancedBinaryTree<Type>::KPL()
 	{
 		KPL_(head);
+		std::cout << "\n";
 	}
-template <typename Type>
-void BalancedBinaryTree<Type>::LPK()
+	template <typename Type>
+	void BalancedBinaryTree<Type>::LPK()
     {
 		LPK(head);
+		std::cout << "\n";
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::LPK_(Node *node)
+	template <typename Type>
+	void BalancedBinaryTree<Type>::PLK()
+    {
+		PLK_(head);
+		std::cout << "\n";
+    }
+	template <typename Type>
+	void BalancedBinaryTree<Type>::PKL()
+    {
+		PKL_(head);
+		std::cout << "\n";
+    }
+    template <typename Type>
+    LinkedList<Type> BalancedBinaryTree<Type>::Represent(int number_ob)
+    {
+        LinkedList<Type> list;
+		Represent_(list,head, number_ob);
+		return list;
+    }
+    template <typename Type>
+    inline BalancedBinaryTree<Type>::~BalancedBinaryTree()
+    {
+		while(head != 0)
+		{
+			head = Remove_(head,head->data_);
+		}
+    }
+    template <typename Type>
+    typename BalancedBinaryTree<Type>::Node *BalancedBinaryTree<Type>::MakeKLPTree(LinkedList<Type> const &list, int left, int right)
+    {
+		if(left > right)
+			return nullptr;
+		Node* node = new Node(list.GetIndex(left));
+		node->leftptr_ = MakeKLPTree(list,left + 1, (left + right)/2);
+		node->rightptr_ = MakeKLPTree(list, (left + right)/2 + 1,right);
+		return node;
+
+    }
+    template <typename Type>
+    inline void BalancedBinaryTree<Type>::Represent_(LinkedList<Type> &list, Node *node,int number_ob)
+    {
+		if(node == 0)
+			return;
+		switch (number_ob)
+		{
+		case 1:
+			{
+				list.push(node->data_);
+				Represent_(list,node->leftptr_,number_ob);
+				Represent_(list,node->rightptr_,number_ob);
+			}
+			break;
+		case 2:
+			{
+				list.push(node->data_);
+				Represent_(list,node->rightptr_,number_ob);
+				Represent_(list,node->leftptr_,number_ob);
+			}
+			break;
+		case 3:
+			{
+				Represent_(list,node->leftptr_,number_ob);
+				Represent_(list,node->rightptr_,number_ob);
+				list.push(node->data_);
+			}
+			break;
+		case 4:
+			{
+				Represent_(list,node->leftptr_,number_ob);
+				list.push(node->data_);
+				Represent_(list,node->rightptr_,number_ob);
+			}
+			break;
+		case 5:
+			{
+				Represent_(list,node->rightptr_,number_ob);
+				Represent_(list,node->leftptr_,number_ob);
+				list.push(node->data_);
+			}
+			break;
+		case 6:
+			{
+				Represent_(list,node->rightptr_,number_ob);
+				list.push(node->data_);
+				Represent_(list,node->leftptr_,number_ob);
+			}
+			break;
+		}
+		
+    }
+    template <typename Type>
+    void BalancedBinaryTree<Type>::PKL(Node *node)
+    {
+		if(node == 0)
+			return;
+		PKL_(node->rightptr_);
+		std::cout << node->data_ << " ";
+		PKL_(node->leftptr_);
+
+    }
+    template <typename Type>
+    void BalancedBinaryTree<Type>::PLK_(Node *node)
+    {
+		if(node == 0)
+			return;
+		PLK_(node->rightptr_);
+		PLK_(node->leftptr_);
+		std::cout << node->data_ << " ";
+    }
+    template <typename Type>
+    void BalancedBinaryTree<Type>::LPK_(Node *node)
     {
 		if(node == 0)
 			return;
@@ -311,8 +432,8 @@ void BalancedBinaryTree<Type>::LPK_(Node *node)
 		KPL_(node->rightptr_);
 		KPL_(node->leftptr_);
     }
-template <typename Type>
-void BalancedBinaryTree<Type>::KLP_(Node *node)
+	template <typename Type>
+	void BalancedBinaryTree<Type>::KLP_(Node *node)
     {
 		if(node == 0)
 			return;

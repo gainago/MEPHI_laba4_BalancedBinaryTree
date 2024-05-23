@@ -3,32 +3,21 @@
 #include "BalancedBinaryTreeDefinition.h"
 #include "functions.h"
 #include "LinkedListDefinition.h"
+#include "test_speed.cpp"
 
-int main()
+
+void foo()
 {
-	
 	BalancedBinaryTree<int> exampletree(5);
 	for(int i= 0;i < 10;i++)
 	{	exampletree.insert(i);
 		
 	}
+}
+int main()
+{
 	
-	//BalancedBinaryTree<int> another(-333);
 	
-	/*exampletree.PrintBinaryTree();
-	another.PrintBinaryTree();
-	exampletree.Confluence(another);
-	exampletree.PrintBinaryTree();
-	//exampletree = exampletree.Map(FooMap);
-	//exampletree.PrintBinaryTree();*/
-
-	//exampletree.foo();
-	exampletree.insert(5);
-	exampletree.PrintBinaryTree();
-	exampletree.SideOutlet();
-	exampletree.KLP();
 	
-	// ooooooo
-
 	
 }

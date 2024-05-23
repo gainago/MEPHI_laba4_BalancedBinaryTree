@@ -1,4 +1,5 @@
-//#include"BalancedBinaryTreeDeclaration.h"
+#pragma once
+#include"BalancedBinaryTreeDeclaration.h"
 template<typename Type>
 Type FooMap(Type data)
 {
