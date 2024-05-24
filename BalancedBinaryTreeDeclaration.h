@@ -27,6 +27,8 @@ class BalancedBinaryTree{
 	BalancedBinaryTree(BalancedBinaryTree<Type> const& base);
 	BalancedBinaryTree(BalancedBinaryTree<Type>::Node* node);
 	BalancedBinaryTree(LinkedList<Type> list);
+	BalancedBinaryTree(Type* arr,size_t n);
+	bool operator==(BalancedBinaryTree<Type> OtherTree);
 	void insert(Type data);
 	void PrintBinaryTree();
 	void PrintBinaryTree(BalancedBinaryTree<Type>::Node* node);
@@ -37,9 +39,9 @@ class BalancedBinaryTree{
 	void Confluence(BalancedBinaryTree<Type> anothertree);
 	BalancedBinaryTree<Type> GetSubTree(Type key);
 	bool Compare( BalancedBinaryTree<Type> SecondTree); // if 1 than they are equal
-	Node* FindElement_(Node* node,Type key);
-	Pair1<BalancedBinaryTree<Type>::Node*>  FindSubTree(BalancedBinaryTree<Type>::Node* root);
-	Pair1<BalancedBinaryTree<Type>::Node*>  FindSubTree(BalancedBinaryTree<Type> obj);
+	Node* FindElement(Type key);
+	BalancedBinaryTree<Type>::Node*  FindSubTree(BalancedBinaryTree<Type>::Node* root);
+	BalancedBinaryTree<Type>::Node* FindSubTree(BalancedBinaryTree<Type> obj);
 	void SideOutlet();
 	void KLP();
 	void KPL();
@@ -50,6 +52,7 @@ class BalancedBinaryTree{
 	~BalancedBinaryTree();
 	static BalancedBinaryTree<Type> MakeTreeForRound(LinkedList<Type> const & listNLR,LinkedList<Type> const & listLNR);
 	private:
+	Node* FindElement_(Node* node,Type key);
 	static Node* MakeTreeForRound_(LinkedList<Type> const & listNLR, int NLRleft, int NLRright, LinkedList<Type> const & listLNR,int LNRleft,int LNRright);
 	void Represent_(LinkedList<Type> &list, Node* node,int number_ob);
 	void PKL(Node* node);

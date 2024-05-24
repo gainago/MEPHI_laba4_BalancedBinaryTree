@@ -46,13 +46,21 @@
 		}
 	}
     template <typename Type>
-    inline BalancedBinaryTree<Type>::BalancedBinaryTree(LinkedList<Type> list)
+    BalancedBinaryTree<Type>::BalancedBinaryTree(LinkedList<Type> list)
     {
-		head = Insert_(head,list.front());
-		if(list.GetLength() == 1)
-			return;
-		head->leftptr_ = MakeKLPTree(list,1,(list.GetLength() - 1)/2);
-		head->rightptr_ = MakeKLPTree(list,(list.GetLength() - 1)/2 + 1,list.GetLength() - 1);
+		for(int i = 0;i < list.GetLength();i++)
+			head = Insert_(head,list.GetIndex(i));
+    }
+    template <typename Type>
+    inline BalancedBinaryTree<Type>::BalancedBinaryTree(Type *Array, size_t MassiveSize)
+    {
+		for(int i = 0;i < MassiveSize;i++)
+			head = Insert_(head,Array[i]);
+    }
+    template <typename Type>
+    inline bool BalancedBinaryTree<Type>::operator==(BalancedBinaryTree<Type> OtherTree)
+    {
+        return this->Compare(OtherTree);
     }
     template <typename Type>
     void BalancedBinaryTree<Type>::insert(Type data)
@@ -223,8 +231,13 @@
     {
         return Compare_(this->head,SecondTree.head);
     }
-	template <typename Type>
-	typename BalancedBinaryTree<Type>::Node* BalancedBinaryTree<Type>::FindElement_(Node *node, Type key)
+    template <typename Type>
+    inline typename BalancedBinaryTree<Type>::Node* BalancedBinaryTree<Type>::FindElement(Type key)
+    {
+        return FindElement_(head,key);
+    }
+    template <typename Type>
+    typename BalancedBinaryTree<Type>::Node *BalancedBinaryTree<Type>::FindElement_(Node *node, Type key)
     {
         if(node == 0)
 			return 0;
@@ -237,7 +250,7 @@
 		}
     }
 	template <typename Type>
-	Pair1< typename BalancedBinaryTree<Type>::Node*> BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type>::Node* root)
+	 typename BalancedBinaryTree<Type>::Node* BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type>::Node* root)
     {
         if(head == 0&& root == 0)
 		{
@@ -278,7 +291,7 @@
 		
     }
 	template <typename Type>
-	Pair1< typename BalancedBinaryTree<Type>::Node*>  BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type> obj)
+	typename BalancedBinaryTree<Type>::Node* BalancedBinaryTree<Type>::FindSubTree(BalancedBinaryTree<Type> obj)
     {
         return FindSubTree(obj.head);
     }
