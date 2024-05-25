@@ -8,5 +8,5 @@ Type FooMap(Type data)
 template<typename Type>
 bool FooWhere(Type data)
 {
-    return 1;
+    return data%2;
 }

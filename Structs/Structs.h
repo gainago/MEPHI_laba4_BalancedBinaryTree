@@ -13,6 +13,7 @@ class Complex{
         return false;
 
     }
+    
     Complex operator+(Complex const & c2)
     {
             return Complex (c2.x_ + this->x_, c2.y_ + this->y_);
@@ -111,6 +112,10 @@ class Char1{
     bool operator<=(Char1 comp)
     {
         return this->ch_ <= comp.ch_;
+    }
+    bool operator!=(Char1 char1)
+    {
+        return !(this->operator==(char1));
     }
    friend std::ostream& operator<<(std::ostream & ost, Char1 comp)
     {
@@ -272,6 +277,22 @@ class Person{
     bool operator%(int a)
     {
         return this->id_.number_ % a || this->id_.series_ % a;
+    }
+    bool operator<(Person p2)
+    {
+        return this->id_.series_ < p2.id_.series_;
+    }
+    bool operator>(Person p2)
+    {
+        return (!(this->operator<(p2)))&&(!this->operator==(p2));
+    }
+    bool operator<=(Person p2)
+    {
+        return !(this->operator>(p2));
+    }
+    bool operator!=(Person p2)
+    {
+        return !this->operator==(p2);
     }
    friend std::ostream& operator<<(std::ostream & ost, Person per)
     {

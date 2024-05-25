@@ -8,6 +8,9 @@
 
 int main()
 {
-	TestInsert();
+	//TestInsert();
+	//TestRemove();
+	//TestMap();
+	TestWhere();
 	
 }
