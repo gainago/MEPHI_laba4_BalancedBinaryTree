@@ -4,6 +4,7 @@
 #include "functions.h"
 #include "LinkedListDefinition.h"
 #include "tests.cpp"
+#include "UserInterface.cpp"
 
 
 int main()
@@ -11,6 +12,7 @@ int main()
 	//TestInsert();
 	//TestRemove();
 	//TestMap();
-	TestWhere();
+	//TestWhere();
+	User<int>();
 	
 }

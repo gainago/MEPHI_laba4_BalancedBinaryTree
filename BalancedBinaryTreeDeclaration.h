@@ -37,7 +37,7 @@ class BalancedBinaryTree{
 	void Map(Type (*FooMap)(Type)); //there are mutable functions
 	void Where(bool (*FooWhere)(Type));
 	void Confluence(BalancedBinaryTree<Type> anothertree);
-	BalancedBinaryTree<Type> GetSubTree(Type key);
+	BalancedBinaryTree<Type> GetSubTreeForElement(Type key);
 	bool Compare( BalancedBinaryTree<Type> SecondTree); // if 1 than they are equal
 	Node* FindElement(Type key);
 	BalancedBinaryTree<Type>::Node*  FindSubTree(BalancedBinaryTree<Type>::Node* root);

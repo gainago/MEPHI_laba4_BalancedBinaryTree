@@ -222,7 +222,7 @@
 		}
     }
 	template <typename Type>
-	BalancedBinaryTree<Type> BalancedBinaryTree<Type>::GetSubTree(Type key)
+	BalancedBinaryTree<Type> BalancedBinaryTree<Type>::GetSubTreeForElement(Type key)
     {
         return GetSubTree_(head,key);
     }
@@ -332,7 +332,8 @@
     }
     template <typename Type>
     LinkedList<Type> BalancedBinaryTree<Type>::Represent(int number_ob)
-    {
+    {	if(number_ob <= 0 || number_ob > 6)
+			throw "недопустимый номер обхода\n";
         LinkedList<Type> list;
 		Represent_(list,head, number_ob);
 		return list;
@@ -349,6 +350,21 @@
     template <typename Type>
     BalancedBinaryTree<Type> BalancedBinaryTree<Type>::MakeTreeForRound(LinkedList<Type> const & listNLR,LinkedList<Type> const & listLNR)
     {
+		if(listLNR.GetLength() != listNLR.GetLength())
+			throw "неверные размеры обходов";
+		for(int i = 0; i < listLNR.GetLength(); i++)
+		{
+			int coincidencess = 0;
+			for(int j = 0; j < listNLR.GetLength();j++)
+			{
+				if(listLNR.GetIndex(i) == listNLR.GetIndex(j))
+				{
+					coincidencess++;
+				}
+			}
+			if(coincidencess == 0)
+			throw "элементы в обходах не совпадают";
+		}
         BalancedBinaryTree<Type> tree;
 		tree.head =  MakeTreeForRound_(listNLR,0,listNLR.GetLength() - 1,listLNR,0,listLNR.GetLength() - 1);
 		return tree;
