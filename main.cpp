@@ -5,14 +5,10 @@
 #include "LinkedListDefinition.h"
 #include "tests.cpp"
 #include "UserInterface.cpp"
+#include "TestSpeed/test_speed.cpp"
 
 
 int main()
 {
-	//TestInsert();
-	//TestRemove();
-	//TestMap();
-	//TestWhere();
 	User<int>();
-	
 }
