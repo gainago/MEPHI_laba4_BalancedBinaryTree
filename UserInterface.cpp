@@ -40,7 +40,7 @@ void User()
                     flag = scanfint(&SizeOfTree);
                 }while(flag == -1 || SizeOfTree < 0);
                 BalancedBinaryTree<Type>* Tree = new BalancedBinaryTree<Type>;
-                std::cout << "Введите " << SizeOfTree << "элементов\n";
+                std::cout << "Введите " << SizeOfTree << " элементов\n";
 
                 for(int i = 0; i < SizeOfTree; i++)
                 {
@@ -58,7 +58,7 @@ void User()
                         std::cout << "У вас нет ни одного созданного дерева\n";
                         return;
                     }
-                    std::cout << "Введите номер дерева \n";
+                    std::cout << "Введите номер дерева(начиная с нуля) \n";
                     int NumberOfTree = 0;
                     do{
                         flag = scanfint(&NumberOfTree);
@@ -71,7 +71,7 @@ void User()
                     if(MassiveOfTrees.GetLength() == 0)
                     {
                         std::cout << "У вас нет ни одного созданного дерева\n";
-                        return;
+                        break;
                     }
                     std::cout << "Введите номер дерева \n";
                     int NumberOfTree = 0;
@@ -89,7 +89,7 @@ void User()
                     if(MassiveOfTrees.GetLength() == 0)
                     {
                         std::cout << "У вас нет ни одного созданного дерева\n";
-                        return;
+                        break;
                     }
                     std::cout << "Введите номер дерева \n";
                     int NumberOfTree = 0;
@@ -100,6 +100,7 @@ void User()
                     Type data;
                     std::cin >> data;
                     MassiveOfTrees.GetIndex(NumberOfTree)->Remove(data);
+                    
                 }
                 break;
             case 5:
@@ -190,24 +191,29 @@ void User()
                     }while (flag == -1||SizeOfRound < 0);
                     LinkedList<Type> ListNLR;
                     LinkedList<Type> ListLNR;
-                    std::cout << "Введите " << SizeOfRound << "элементов которые соответствуют прямому(КЛП) обходу\n";
+                    std::cout << "Введите " << SizeOfRound << " элементов которые соответствуют прямому(КЛП) обходу\n";
                     for(int i = 0;i < SizeOfRound;i ++)
                     {
                         Type data;
                         std::cin >> data;
                         ListNLR.push(data);
                     }
-                    std::cout << "Введите " << SizeOfRound << "элементов которые соответствуют  центрированному(ЛКП) обходу\n";
+                    std::cout << "Введите " << SizeOfRound << " элементов которые соответствуют  центрированному(ЛКП) обходу\n";
                     for(int i = 0;i < SizeOfRound;i ++)
                     {
                         Type data;
                         std::cin >> data;
                         ListLNR.push(data);
                     }
-
+                    try{
                     BalancedBinaryTree<Type> *Tree = new BalancedBinaryTree<Type>(BalancedBinaryTree<Type>::MakeTreeForRound(ListNLR,ListLNR));
                     Tree->SideOutlet();
                     MassiveOfTrees.push(Tree);
+                    }
+                    catch(char const* str)
+                    {
+                        std::cout << str << "\n";
+                    }
                 }
                 break;
         }

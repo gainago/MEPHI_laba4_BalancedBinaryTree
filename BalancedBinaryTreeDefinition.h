@@ -297,7 +297,13 @@
     }
 	template <typename Type>
 	void BalancedBinaryTree<Type>::SideOutlet()
-    {
+    {	
+		if(head == 0)
+		{
+		std::cout << "дерево пустое \n";
+		return;
+		}
+
 		SideOutlet_(head,0,false);
     }
 	template <typename Type>
