@@ -15,7 +15,7 @@ void User()
     while(Action)
     {
         std::cout << "Выберите действие:\n\
-        1. Создать сбаленсированное бинарное дерево поиска\n\
+        1. Создать сбалансированное бинарное дерево поиска\n\
         2. Вывести дерево на экран в повернутом виде\n\
         3. Добавить элемент в дерево\n\
         4. Удалить элемент из дерева\n\
@@ -63,7 +63,10 @@ void User()
                     do{
                         flag = scanfint(&NumberOfTree);
                     }while(flag == -1 || NumberOfTree < 0 || NumberOfTree >= MassiveOfTrees.GetLength());
-                    MassiveOfTrees.GetIndex(NumberOfTree)->SideOutlet();
+                   // MassiveOfTrees.GetIndex(NumberOfTree)->SideOutlet();
+                   //SideOutlet(*MassiveOfTrees.GetIndex(NumberOfTree));
+                   PrettyPrinterSideTraversal<Type> SideTraversal;
+                   SideTraversal.Print(*MassiveOfTrees.GetIndex(NumberOfTree));
                 }
             break;
             case 3:
@@ -148,7 +151,10 @@ void User()
                     std::cout << "Введите элемент по которому хотите найти поддерево\n";
                     Type data;
                     std::cin >> data;
-                    (MassiveOfTrees.GetIndex(NumberOfTree)->GetSubTreeForElement(data)).SideOutlet();
+                    //(MassiveOfTrees.GetIndex(NumberOfTree)->GetSubTreeForElement(data)).SideOutlet();
+                    //SideOutlet((MassiveOfTrees.GetIndex(NumberOfTree)->GetSubTreeForElement(data)));
+                    PrettyPrinterSideTraversal<Type> SideTraversal;
+                   SideTraversal.Print((MassiveOfTrees.GetIndex(NumberOfTree)->GetSubTreeForElement(data)));
                 }
                 break;
             case 8:
@@ -207,7 +213,10 @@ void User()
                     }
                     try{
                     BalancedBinaryTree<Type> *Tree = new BalancedBinaryTree<Type>(BalancedBinaryTree<Type>::MakeTreeForRound(ListNLR,ListLNR));
-                    Tree->SideOutlet();
+                    //Tree->SideOutlet();
+                    //SideOutlet(*Tree);
+                    PrettyPrinterSideTraversal<Type> SideTraversal;
+                    SideTraversal.Print(*Tree);
                     MassiveOfTrees.push(Tree);
                     }
                     catch(char const* str)

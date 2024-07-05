@@ -1,0 +1,1 @@
+/usr/bin/c++ -g -rdynamic CMakeFiles/MYCmakeProject.dir/main.cpp.o CMakeFiles/MYCmakeProject.dir/scanfint.cpp.o -o MYCmakeProject 

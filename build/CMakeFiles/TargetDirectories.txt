@@ -1,0 +1,3 @@
+/home/gosha/C++/MEPHI_laba_Alex_4/build/CMakeFiles/MYCmakeProject.dir
+/home/gosha/C++/MEPHI_laba_Alex_4/build/CMakeFiles/edit_cache.dir
+/home/gosha/C++/MEPHI_laba_Alex_4/build/CMakeFiles/rebuild_cache.dir

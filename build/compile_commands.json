@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/gosha/C++/MEPHI_laba_Alex_4/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/MYCmakeProject.dir/main.cpp.o -c /home/gosha/C++/MEPHI_laba_Alex_4/main.cpp",
+  "file": "/home/gosha/C++/MEPHI_laba_Alex_4/main.cpp"
+},
+{
+  "directory": "/home/gosha/C++/MEPHI_laba_Alex_4/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/MYCmakeProject.dir/scanfint.cpp.o -c /home/gosha/C++/MEPHI_laba_Alex_4/scanfint.cpp",
+  "file": "/home/gosha/C++/MEPHI_laba_Alex_4/scanfint.cpp"
+}
+]

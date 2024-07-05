@@ -1,14 +1,32 @@
 #pragma once
 #include "LinkedListDeclaration.h"
+#include <string>
+#include <iostream>
+#include "BalancedBinaryTreePrint.h"
 template<typename Type>
 struct Pair1{
 	Type data_;
 	int is_exist_{0};
 	
 };
+template<typename Type>
+class BalancedBinaryTree;
+
+template<typename Type>
+class Node;
+
+template <typename Type>
+class ReturnNode
+{
+public:
+	virtual Type const & Get() = 0;
+};
+
+
 template <typename Type>
 class BalancedBinaryTree{
-	private:
+private:
+	//public:
 	struct Node{
 		Node(Type t1);
 		Node();
@@ -16,12 +34,46 @@ class BalancedBinaryTree{
 		signed char height_;
 		Node* leftptr_;
 		Node* rightptr_;
+		static void DeleteTree(Node* node)
+		{
+			if(node->leftptr_ != 0)
+				DeleteTree(node->leftptr_);
+			delete node->leftptr_;
+			if(node->rightptr_ != 0)
+				DeleteTree(node->rightptr_);
+			delete node->rightptr_;
+			
+		}
 	};
 	Node* head{nullptr};
-
+	template<typename T = Type>
+	class ReturnNodeBalancedTree : public ReturnNode<T>
+	{
+	private:
+		Type data_;
 	public:
-	/*template<typename Type1>
-	friend void   PrintBinaryTree(typename BalancedBinaryTree<Type1>::Node* node);*/
+		ReturnNodeBalancedTree(Type const & data) : data_(data){}
+		Type const & Get()
+		{
+			return data_;
+		}
+
+	};
+	template<typename T>
+	friend class PrettyPrinterKLP;
+	template<typename T>
+	friend class PrettyPrinterKPL;
+	template<typename T>
+	friend class PrettyPrinterLPK;
+	template<typename T>
+	friend class PrettyPrinterPLK;
+	template<typename T>
+	friend class PrettyPrinterPKL;
+	template<typename T>
+	friend class PrettyPrinterSideTraversal;
+public:
+	static BalancedBinaryTree<Type> MakeTreeForRound(LinkedList<Type> const & listNLR,LinkedList<Type> const & listLNR);
+	
 	BalancedBinaryTree();
 	BalancedBinaryTree(Type data);
 	BalancedBinaryTree(BalancedBinaryTree<Type> const& base);
@@ -29,45 +81,35 @@ class BalancedBinaryTree{
 	BalancedBinaryTree(LinkedList<Type> list);
 	BalancedBinaryTree(Type* arr,size_t n);
 	bool operator==(BalancedBinaryTree<Type> OtherTree);
-	void insert(Type data);
-	void PrintBinaryTree();
-	void PrintBinaryTree(BalancedBinaryTree<Type>::Node* node);
-	void Remove(Type data);
+	Node* insert(Type data);
+	
+	BalancedBinaryTree<Type> const & Remove(Type data);
 	Pair1<Type> RemoveFirst();
-	void Map(Type (*FooMap)(Type)); //there are mutable functions
-	void Where(bool (*FooWhere)(Type));
-	void Confluence(BalancedBinaryTree<Type> anothertree);
+	BalancedBinaryTree<Type> const &Map(Type (*FooMap)(Type)); //there are mutable functions
+	BalancedBinaryTree<Type> const & Where(bool (*FooWhere)(Type));
+	BalancedBinaryTree<Type> const & Confluence(BalancedBinaryTree<Type> anothertree);
 	BalancedBinaryTree<Type> GetSubTreeForElement(Type key);
 	bool Compare( BalancedBinaryTree<Type> SecondTree); // if 1 than they are equal
-	Node* FindElement(Type key);
+	ReturnNode<Type>*  FindElement(Type key);
+	
 	BalancedBinaryTree<Type>::Node*  FindSubTree(BalancedBinaryTree<Type>::Node* root);
-	BalancedBinaryTree<Type>::Node* FindSubTree(BalancedBinaryTree<Type> obj);
-	void SideOutlet();
-	void KLP();
-	void KPL();
-	void LPK();
-	void PLK();
-	void PKL();
+	BalancedBinaryTree<Type>::Node* FindSubTree(BalancedBinaryTree<Type> const & obj);
+	
 	LinkedList<Type> Represent(int number_ob);
 	~BalancedBinaryTree();
-	static BalancedBinaryTree<Type> MakeTreeForRound(LinkedList<Type> const & listNLR,LinkedList<Type> const & listLNR);
-	private:
-	Node* FindElement_(Node* node,Type key);
+private:
+	ReturnNode<Type>*  FindElement_(Node* node,Type key);
 	static Node* MakeTreeForRound_(LinkedList<Type> const & listNLR, int NLRleft, int NLRright, LinkedList<Type> const & listLNR,int LNRleft,int LNRright);
+	
 	void Represent_(LinkedList<Type> &list, Node* node,int number_ob);
-	void PKL(Node* node);
-	void PLK_(Node* node);
-	void LPK_(Node* node);
-	void KPL_(Node* node);
-	void KLP_(Node* node);
-	void SideOutlet_(Node* node,int space,bool isleft);
+	
 	int IsInclude(Node* head, Node* node);
 	bool Compare_(Node* FirstNode, Node* SecondNode);//
 	BalancedBinaryTree<Type> GetSubTree_(Node* node,Type key);
 	Node* Remove_(Node* node, Type data);
 	signed char GetHeight(Node* node);
 	void FixHeight(Node* node);
-	Node* Insert_(Node* node, Type data);
+	Node* Insert_(Node* node, Type data,BalancedBinaryTree<Type>::Node* NodeReturn);
 	Node* Balance(Node* node);
 	Node* RightRotate(Node* node);
 	Node* LeftRotate(Node* node);
@@ -75,3 +117,9 @@ class BalancedBinaryTree{
 	Node* FindMin(Node* node);
 	Node* RemoveMin(Node* node);
 };
+template<class T>
+void SideOutlet(BalancedBinaryTree<T> const & tree);
+template<class T>
+void SideOutlet_(typename BalancedBinaryTree<T>::Node const * node,int space,bool isleft);
+
+
