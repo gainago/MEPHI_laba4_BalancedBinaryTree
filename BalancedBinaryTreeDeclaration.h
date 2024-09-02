@@ -36,12 +36,12 @@ private:
 		Node* rightptr_;
 		static void DeleteTree(Node* node)
 		{
-			if(node->leftptr_ != 0)
+			
+				if(node == nullptr)
+					return;
 				DeleteTree(node->leftptr_);
-			delete node->leftptr_;
-			if(node->rightptr_ != 0)
 				DeleteTree(node->rightptr_);
-			delete node->rightptr_;
+			delete node;
 			
 		}
 	};
@@ -85,7 +85,7 @@ public:
 	
 	BalancedBinaryTree<Type> const & Remove(Type data);
 	Pair1<Type> RemoveFirst();
-	BalancedBinaryTree<Type> const &Map(Type (*FooMap)(Type)); //there are mutable functions
+	BalancedBinaryTree<Type> const Map(Type (*FooMap)(Type)); //there are mutable functions
 	BalancedBinaryTree<Type> const & Where(bool (*FooWhere)(Type));
 	BalancedBinaryTree<Type> const & Confluence(BalancedBinaryTree<Type> anothertree);
 	BalancedBinaryTree<Type> GetSubTreeForElement(Type key);

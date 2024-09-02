@@ -1,12 +1,8 @@
 #include <iostream>
-#include "BalancedBinaryTreeDeclaration.h"
-#include "BalancedBinaryTreeDefinition.h"
-#include "functions.h"
-#include "LinkedListDefinition.h"
 #include "tests.cpp"
-#include "UserInterface.cpp"
+#include "UserInterface.h"
 #include "TestSpeed/test_speed.cpp"
-#include <string>
+
 
 
 int main()
@@ -20,7 +16,14 @@ int main()
 	{
 	BalancedBinaryTree<int> TreeStack(arr,5);
 	}*/
-		
+	/*LinkedList<Person> List;
+	Person p1{12,34,"rrr"};
+	Person p2{34, 56};
+	List.push(p1);
+	List.push(p2);
+	List.ShowLinkedList();	
+	LinkedList<Person> List2;
+	List2 = List;*/
 	
 	
 }

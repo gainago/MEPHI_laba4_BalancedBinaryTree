@@ -167,7 +167,7 @@ template<typename Type>
     template<typename Type>    
     LinkedList<Type> ::  Node  :: Node(Type value)
     {
-        this->value =value;
+        this->value = value;
         next = NULL;
     }
     template<typename Type>

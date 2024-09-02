@@ -87,7 +87,7 @@
 		return Pair1<Type>{current,1};
     }
 	template <typename Type>
-	BalancedBinaryTree<Type> const & BalancedBinaryTree<Type>::Map(Type (*FooMap)(Type))
+	BalancedBinaryTree<Type> const  BalancedBinaryTree<Type>::Map(Type (*FooMap)(Type))
     {	
 		if(head == 0)
 		return BalancedBinaryTree<Type>();
@@ -242,10 +242,10 @@
     template <typename Type>
     inline BalancedBinaryTree<Type>::~BalancedBinaryTree()
     {
-		if(head != 0){
+		
 			Node::DeleteTree(head);
-			delete head;
-		}
+			
+		
     }
 
     template <typename Type>

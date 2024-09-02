@@ -2,10 +2,11 @@
 #include "BalancedBinaryTreeDeclaration.h"
 #include "BalancedBinaryTreeDefinition.h"
 #include "functions.h"
+#include "LinkedListDeclaration.h"
 #include "LinkedListDefinition.h"
 #include <cassert>
 #include "Structs/Structs.h"
-#include "scanfint.cpp"
+#include "scanfint.h"
 template<typename Type>
 void User()
 {

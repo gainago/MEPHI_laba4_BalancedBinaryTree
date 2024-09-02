@@ -21,6 +21,20 @@ class LinkedList
     Type front();
     void pop();
     void push(Type);
+    void operator=(LinkedList<Type> const & LL)
+    {
+        if(this->head == LL.head)
+            return;
+        this->~LinkedList();
+        if(LL.size == 0)
+        return;
+        Node* ptr = LL.head; 
+       for(int i = 0; i < LL.size;i++)
+       {
+            this->Append(ptr->value);
+            ptr = ptr->next;
+       }
+    }
     ~LinkedList()
     {   
         Node* curr;
@@ -30,6 +44,8 @@ class LinkedList
             head = head->next;
             delete curr;
         }
+        size = 0;
+        head = nullptr;
     }
     void DeleteIndex(int index);
     private:

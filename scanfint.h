@@ -1,0 +1,1 @@
+int scanfint(int *integer);
